@@ -1,0 +1,8 @@
+1.使用es6模块功能时必须使用package.json文件在其中添加
+{
+    "type": "module"
+}
+
+2.导入模块的时候，如果导入default模块时使用import xxx from 'xxx.js'
+
+3.导入模块的时候，如果导入具体模块时使用import {xxx} from 'xxx.js'
