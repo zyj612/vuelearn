@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 父组件模板 -->
+    <div id="app">
+        <cpn><button slot="left">按钮</button></cpn>
+    </div>
+    <!-- 子组件模板 -->
+    <template id="cpn">
+        <div>
+            <slot name="left"><span>左边</span></slot>
+            <slot name="center"><span>中间</span></slot>
+            <slot name="right"><span>右边</span></slot>
+            <slot><span>哈哈哈</span></slot>
+        </div> 
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        //vue实例可认为是根组件
+        const app = new Vue({
+            el:'#app',//用于要挂载的元素
+            data:{
+                num1: 1,
+                num2: 0
+            },
+            methods:{
+                btnClick(){
+                    console.log(this.$children);
+                    console.log(this.$children.length);
+                    this.$children[0].showMessage();
+                    console.log(this.$children[0].name);
+                    console.log(this.$refs);
+                }
+
+            },
+            //局部组件注册
+            components:{
+                cpn:{
+                    template:'#cpn',
+                    //data属性是子组件的属性
+                    data(){
+                        return {
+                            name:'小明'
+                        }
+                    },
+                    methods:{
+                        showMessage(){
+                            console.log('showMessage');
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

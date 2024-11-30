@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 这里不可以使用mustache语法 -->
+        <!-- <img src="{{imgUrl}}" alt="" srcset=""> -->
+        <!-- 动态绑定 -->
+        <!-- 语法糖写法，可以省区v-bind关键字 -->
+        <img :src="imgUrl" alt="" srcset="">
+        <a v-bind:href="aHref">百度一下</a>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        //在vue解析之前有一个v-cloak属性，解析之后就没有这个属性了。所以style中的display:none也就失效了
+        const app = new Vue({
+            el:'#app',//用于要挂载的元素
+            data:{//定义数据
+                message:'你好啊！',
+                imgUrl:'https://img12.360buyimg.com/ling/jfs/t1/98207/6/25586/80672/624667edEa930764f/f125a338955b3283.jpg',
+                aHref:'http://www.baidu.com'
+            }
+        })
+     
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-if条件成立时dom元素不会在页面中 -->
+        <h2 v-if="isShow" id="a">aaa</h2>
+        <!-- v-show条件成立时dom元素会在页面中，知识加了display:none属性 -->
+        <h2 v-show="isShow" id="b">bbb</h2>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',//用于要挂载的元素
+            data:{//定义数据
+                message:'你好，Hello World',
+                isShow:true 
+            },
+            methods:{
+                btn(){
+                    this.isUser =!this.isUser
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <input type="text" v-model.lazy="message">
+        <h2>{{message}}</h2>
+        <!-- 这里能输入e，因为e是自然对数的底数，是一个无限不循环小数，其值是2.71828 -->
+        <input type="number" v-model.number="age">
+        <h2>{{typeof age}}</h2>
+
+        <input type="text" v-model.trim="name">
+        <h2>{{name}}</h2>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',//用于要挂载的元素
+            data: {//定义数据
+                message: '你好啊！',
+                age:18,
+                name:'Jack'
+            },
+            methods: {
+                valueChange(event) {
+                    this.message = event.target.value;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpn></cpn>
+    </div>
+    <div id="app2">
+        <cpn></cpn>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        //es6语法
+        // ``相当于单引号，但是可以换行
+        //1.创建组件构造器对象(全局组件，多个vue实例都可以使用)
+        const cpnC = Vue.extend({
+            template:`
+            <div>
+                <h2>我是标题</h2>
+                <p>我是内容aaaa</p>
+                <p>我是内容bbbb</p>
+            </div>  `
+        });
+        //注册组件
+        //Vue.component('cpn',cpnC);
+        //
+        const app = new Vue({
+            el:'#app',//用于要挂载的元素
+            data:{//定义数据
+                message:'你好啊！'  
+            },
+            //局部组件注册
+            components:{
+                //属性名就是组件标签名，cpnC是组件构造器对象
+                cpn:cpnC
+            }
+        });
+        const app2 = new Vue({
+            el:'#app2',//用于要挂载的元素
+        })
+    </script>
+</body>
+</html>

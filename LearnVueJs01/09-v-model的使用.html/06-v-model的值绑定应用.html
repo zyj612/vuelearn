@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 多选框 -->
+        <label for="">
+            <input type="checkbox" value="篮球" v-model="hobbies">篮球
+            <input type="checkbox" value="足球" v-model="hobbies">足球
+            <input type="checkbox" value="乒乓球" v-model="hobbies">乒乓球
+            <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+        </label>
+        <h2>您好的爱好是：{{hobbies}}</h2>
+        <label v-for="item in originHobbies" v-bind:for="item" >
+            <input type="checkbox" :value="item" :id="item" v-model="hobbies">{{item}}
+        </label>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',//用于要挂载的元素
+            data: {//定义数据
+                message: '你好啊！',
+                isAgree: false,//对应的布尔值
+                hobbies:[],//对应数组类型,
+                originHobbies:['篮球','足球','乒乓球','羽毛球','高尔夫','曲棍球','排球']
+            },
+            methods: {
+                valueChange(event) {
+                    this.message = event.target.value;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 父组件模板 -->
+    <div id="app">
+        <cpn @itemclick="cpnClick"></cpn>
+    </div>
+    <!-- 子组件模板 -->
+    <template id="cpn">
+        <div>
+            <button v-for="item in categories" @click="btnClick(item)">{{item.name}}</button>
+        </div> 
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        //es6语法
+        // ``相当于单引号，但是可以换行
+        //1.创建组件构造器对象(全局组件，多个vue实例都可以使用)
+        //(子组件)
+        const cpn = {
+            template:'#cpn',
+            data(){
+                return { categories:[
+                            {id:100,name:"热门推荐"},
+                            {id:101,name:"手机推荐"},
+                            {id:102,name:"家电推荐"},
+                            {id:103,name:"办公推荐"},
+                        ]};
+            },
+            methods:{
+                btnClick(item){
+                    //向父组件发射自定义事件
+                    this.$emit("itemclick",item);
+                }
+            }
+        };
+
+        //vue实例可认为是根组件
+        const app = new Vue({
+            el:'#app',//用于要挂载的元素
+            data:{
+                info:{
+                    name : 'why',
+                    age : 18,
+                    height: 188
+                }
+            },
+            //局部组件注册
+            components:{
+                cpn
+            },
+            methods:{
+                cpnClick(item){
+                    console.log(item.name);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

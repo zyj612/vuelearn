@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <h2 v-bind:style="{css属性名:属性值}">{{message}}</h2> -->
+        <!-- 属性名驼峰和横杠都是支持的，例如font-size fontSize -->    
+            <h2 v-bind:style="[baseStyle,baseStyle1]">{{message}}</h2>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        //在vue解析之前有一个v-cloak属性，解析之后就没有这个属性了。所以style中的display:none也就失效了
+        const app = new Vue({
+            el:'#app',//用于要挂载的元素
+            data:{//定义数据
+                message:'你好！',
+                baseStyle:{backgroundColor:'red'},
+                baseStyle1:{fontSize:'100px'}
+            },
+            methods:{
+                getStyles:function(){
+                    return {fontSize:this.finalSize+'px',color:this.finalColor};
+                }
+            }
+        })
+    </script>
+</body>
+</html>

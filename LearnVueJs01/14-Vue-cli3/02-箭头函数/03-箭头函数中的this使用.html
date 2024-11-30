@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //ES6中的箭头函数
+        //箭头函数中的this如何查找，直接向外层作用域查找的
+        const obj = {
+            aa() {
+                setTimeout(function () {
+                    console.log(this);//windows对象
+                })
+                setTimeout(() => console.log(this))// obj对象
+            },
+
+            bb() {
+                setTimeout(function () {
+                    setTimeout(function () {
+                        console.log(this);//windows对象
+                    })
+                    setTimeout(() => console.log(this))// window
+                });
+                setTimeout(() => {
+                    setTimeout(function () {
+                        console.log(this);//windows对象
+                    })
+                    setTimeout(() => console.log(this))// obj对象
+                })
+            }
+        }
+        obj.bb();
+    </script>
+</body>
+
+</html>

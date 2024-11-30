@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-cpn></my-cpn>
+        <my-cpn></my-cpn>
+        <my-cpn></my-cpn>
+        <my-cpn></my-cpn>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        //es6语法
+        // ``相当于单引号，但是可以换行
+        //1.创建组件构造器对象
+        const cpnC = Vue.extend({
+            template:`
+            <div>
+                <h2>我是标题</h2>
+                <h2>我是内容aaaa</h2>
+                <h2>我是内容bbbb</h2>
+            </div>  `
+        });
+        //注册组件
+        Vue.component('my-cpn',cpnC);
+        const app = new Vue({
+            el:'#app',//用于要挂载的元素
+            data:{//定义数据
+                message:'你好啊！'  
+            }
+        })
+    </script>
+</body>
+</html>

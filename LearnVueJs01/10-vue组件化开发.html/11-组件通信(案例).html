@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 父组件模板 -->
+    <div id="app">
+        <cpn :number1="num1" :number2="num2" @num1input="num1input" @num2input="num2input"/>
+    </div>
+    <!-- 子组件模板 -->
+    <template id="cpn">
+        <div>
+            <h2>props:{{number1}}</h2>
+            <h2>data:{{dnumber1}}</h2>
+            <!-- <input type="text" v-model="dnumber1"> -->
+            <input type="text" :value="dnumber1" @input="num1input">
+            <h2>props:{{number2}}</h2>
+            <h2>data:{{dnumber2}}</h2>
+            <!-- <input type="text" v-model="dnumber2"> -->
+            <input type="text" :value="dnumber2" @input="num2input">
+        </div> 
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        //vue实例可认为是根组件
+        const app = new Vue({
+            el:'#app',//用于要挂载的元素
+            data:{
+                num1: 1,
+                num2: 0
+            },
+            //局部组件注册
+            components:{
+                cpn:{
+                    template:'#cpn',
+                    props:{
+                        number1:Number,
+                        number2:Number
+                    },
+                    //data属性是子组件的属性
+                    data(){
+                        return {
+                            dnumber1:this.number1,
+                            dnumber2:this.number2
+                        }
+                    },
+                    methods:{
+                        num1input(event){
+                            this.dnumber1=event.target.value;
+                            this.$emit('num1input',this.dnumber1);
+                        },
+                        num2input(event){
+                            this.dnumber2=event.target.value;
+                            this.$emit('num2input',this.dnumber2);
+                        }
+                    }
+                }
+            },
+            methods:{
+                num1input(value){
+                    this.num1 = parseFloat(value);
+                },
+                num2input(value){
+                    this.num2 = parseFloat(value);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

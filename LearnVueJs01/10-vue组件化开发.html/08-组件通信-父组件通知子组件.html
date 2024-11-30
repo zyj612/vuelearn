@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpn  :cmessage="message"></cpn>
+        <!-- <cpn cmovies="movies" cmessage="message"></cpn> -->
+    </div>
+    <template id="cpn">
+        <div>
+            <ul>
+                <li v-for="item in cmovies">{{item}}</li>
+            </ul>
+            <h2>{{cmessage}}</h2>
+        </div> 
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        //es6语法
+        // ``相当于单引号，但是可以换行
+        //1.创建组件构造器对象(全局组件，多个vue实例都可以使用)
+        //(子组件)
+        const cpn = Vue.extend({
+            template:'#cpn',
+            //props:['cmovies','cmessage'],
+            props:{
+                //1.类型限制
+                //cmovies: Array,
+                //cmessage: String
+                //2.提供默认值
+                //类型是对象或者数组时，默认值必须是函数
+                cmovies:{
+                    type:Array,
+                    default(){
+                        return [1,2,3];
+                    }
+                },
+                cmessage: {
+                    type:String,
+                    default:'aaaaaa',
+                    required:true
+                }
+            },
+            data(){
+                return {};
+            }
+        });
+        //(父组件)
+        const cpnC2 = Vue.extend({
+            template:`
+            <div>
+                <h2>我是标题2</h2>
+                <p>我是内容bbbb</p>
+                <cpn1></cpn1>
+            </div>  `,
+            components:{
+            }
+        });
+
+        //vue实例可认为是根组件
+        const app = new Vue({
+            el:'#app',//用于要挂载的元素
+            data:{//定义数据
+                message:"你好啊！",
+                movies:['海王','海尔兄弟','海贼王']
+            },
+            //局部组件注册
+            components:{
+                cpn
+            }
+        })
+    </script>
+</body>
+</html>

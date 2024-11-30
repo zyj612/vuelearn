@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 遍历对象，只取一个值，获取的是属性值 -->
+        <ul>
+            <li v-for="item in info">{{item}}</li>
+        </ul>
+        <ul>
+            <li v-for="(value,key,index) in info">{{value}}-{{key}}-{{index}}</li>
+        </ul>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',//用于要挂载的元素
+            data:{//定义数据
+                info:{
+                    name:"John",
+                    age:18,
+                    height:188
+                }
+            },
+            methods:{
+                btn(){
+                    this.isUser =!this.isUser
+                }
+            }
+        })
+    </script>
+</body>
+</html>

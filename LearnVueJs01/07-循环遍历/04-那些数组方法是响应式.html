@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in letters" :key="item">{{item}}</li>
+        </ul>
+        <button @click="btnClick">按钮</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',//用于要挂载的元素
+            data:{//定义数据y
+                letters:['A','B','C','D','E']
+            },
+            methods:{
+                btnClick(){
+                    //this.letters.push('AAA','BBB','CCC');
+                    //this.letters[0]='aaa';
+                    //this.letters.pop();//删除数组最后元素
+                    //this.letters.shift();//删除数组第一个元素
+                    //this.letters.unshift('AAA','BBB','CCC');//数组队首插入元素
+                    //this.letters.splice(1);//删除从位置1开始后的元素
+                    //this.letters.splice(1,2);//删除元素，位置1开始删除2个元素
+                    //this.letters.splice(1,3,'a','b','c','d');//将对应的元素替换调
+                    //this.letters.splice(1,0,'a','b','c');
+                    //this.letters.sort();
+                    this.letters.reverse();
+                    Vue.set(this.letters,0,'a');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

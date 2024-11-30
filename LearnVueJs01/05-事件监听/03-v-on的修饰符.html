@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div @click="divClick">
+            <h2>aaaaaa</h2>
+            <!-- 阻止事件冒泡 -->
+            <!-- .stop修饰符使用-->
+            <button @click.stop="btnClick">按钮</button>
+        </div>
+        <form action="baidu">
+            <input type="submit" value="提交" @click.prevent="submitClick">
+        </form>
+        <!-- 监听按键 -->
+        <input type="text" @keyup.enter="keyUp">
+        <!-- 只出发一次回调 -->
+        <button @click.once="btn1Click">回调一次</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',//用于要挂载的元素
+            data:{//定义数据
+                message:'你好啊！'  ,
+                counter:0
+            },
+            methods:{
+                divClick(){
+                    console.log("div被执行！");
+                },
+                btnClick(){
+                    console.log("button被执行！"); 
+                },
+                btn1Click(){
+                    console.log("回调一次被执行！"); 
+                },
+                submitClick(){
+                    console.log("submitClick被执行！"); 
+                },
+                keyUp(){
+                    console.log("submitClick被执行！"); 
+                }
+            }
+        })
+    </script>
+</body>
+</html> 
